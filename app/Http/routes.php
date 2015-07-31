@@ -31,7 +31,7 @@ Route::group(['prefix' => 'admin'], function(){
 
 // =======================
 post('test', function(){
-    return "this is a post"; 
+    return "this is a post";
 });
 
 Route::match(['get', 'post', 'put'], 'foo', function(){
