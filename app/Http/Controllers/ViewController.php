@@ -19,10 +19,6 @@ class ViewController extends Controller
             'John Smith'
         ];
 
-        array_push($names, 'Mike');
-
-        $header = "People i like";
-
-        return view('templates.layouts', compact('names', 'header'));
+        return view('partial', compact('names'));
     }
 }
