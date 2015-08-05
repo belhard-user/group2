@@ -52,4 +52,24 @@ class ViewController extends Controller
 
         return view('view.db')->withTest($test);
     }
+
+    public function insert()
+    {
+        $result = DB::table('test')->insert([
+            [
+                'email' => 'tank@gmail.com',
+                'age' => 100,
+                'country_code' => 'BR',
+                'name' => 'tank'
+            ],
+            [
+                'email' => 'trinity@gmail.com',
+                'age' => 100,
+                'country_code' => 'BR',
+                'name' => 'Trinity'
+            ],
+        ]);
+
+        dd($result);
+    }
 }
