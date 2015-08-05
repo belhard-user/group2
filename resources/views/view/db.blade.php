@@ -11,4 +11,6 @@
         </tr>
     @endforeach
     </table>
+
+    {!! $test->render() !!}
 @endsection

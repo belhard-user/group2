@@ -40,15 +40,16 @@ class ViewController extends Controller
             })
             ->get();*/
 
-        $test = DB::table('test')->select(DB::raw('name, age'))->get();
+        /*$test = DB::table('test')->select(DB::raw('name, age'))->get();
         dd($test);
 
         $test = DB::table('test')->sum('age');
-        dd($test);
+        dd($test);*/
 
         // dd($test);
 
         // return $test;
+        $test = DB::table('test')->paginate(10);
 
         return view('view.db')->withTest($test);
     }
@@ -79,5 +80,13 @@ class ViewController extends Controller
         $result = DB::table('test')->where('id', 101)->increment('age', 1, ['name' => $name->name . '!!!']);
 
         return view('view.update')->with('result', $result)->with('name', $name);
+    }
+
+    public function delete()
+    {
+        // $result = DB::table('test')->where('name', 'Myah Kohler')->delete();
+        $result = DB::table('test')->truncate();
+
+        dd($result);
     }
 }
