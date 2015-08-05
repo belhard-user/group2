@@ -72,4 +72,12 @@ class ViewController extends Controller
 
         dd($result);
     }
+
+    public function update()
+    {
+        $name = DB::table('test')->where('id', 101)->first();
+        $result = DB::table('test')->where('id', 101)->increment('age', 1, ['name' => $name->name . '!!!']);
+
+        return view('view.update')->with('result', $result)->with('name', $name);
+    }
 }
