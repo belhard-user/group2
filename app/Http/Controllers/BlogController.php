@@ -11,6 +11,15 @@ class BlogController extends Controller
 {
     public function index()
     {
-        return view('blog.index');
+        $articles = \DB::table('articles')->paginate(3);
+
+        return view('blog.index', compact('articles'));
+    }
+
+    public function view($id)
+    {
+        $article = \DB::table('articles')->where('id', $id)->first();
+
+        return view('blog.view', compact('article'));
     }
 }
