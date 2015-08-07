@@ -3,7 +3,7 @@
  * Blog section
  */
 Route::get('/', ['as' => 'main', 'uses' => 'BlogController@index']);
-Route::get('view/{id}', ['as' => 'view.blog', 'uses' => 'BlogController@view']);
+Route::get('/{id}', ['as' => 'view.blog', 'uses' => 'BlogController@view']);
 
 /**
  * Present controller

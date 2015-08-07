@@ -25,7 +25,7 @@
 
     <!-- Site footer -->
     <footer class="footer">
-        <p>© Company 2014</p>
+        <p>© Company {{ date('Y') }}</p>
     </footer>
 
 </div> <!-- /container -->

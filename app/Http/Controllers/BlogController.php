@@ -11,9 +11,11 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $articles = \DB::table('articles')->paginate(3);
+        $pagination = \DB::table('articles')->paginate(6);
 
-        return view('blog.index', compact('articles'));
+        $articles = $pagination->chunk(3);
+
+        return view('blog.index', compact('articles', 'pagination'));
     }
 
     public function view($id)
