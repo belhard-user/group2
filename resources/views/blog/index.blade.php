@@ -15,7 +15,7 @@
         @endforeach
     </div>
 @empty
-
+    <h3>Нифига нету</h3>
 @endforelse
 
 <div class="row">

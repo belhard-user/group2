@@ -22,6 +22,10 @@ class BlogController extends Controller
     {
         $article = \DB::table('articles')->where('id', $id)->first();
 
+        if(! $article){
+            abort(404);
+        }
+
         return view('blog.view', compact('article'));
     }
 }

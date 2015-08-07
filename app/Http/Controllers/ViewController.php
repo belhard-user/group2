@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use \DB;
+use DB;
+use App\Article;
 
 class ViewController extends Controller
 {
@@ -88,5 +89,25 @@ class ViewController extends Controller
         $result = DB::table('test')->truncate();
 
         dd($result);
+    }
+
+    public function model()
+    {
+
+        $foo = Article::latest('updated_at')->get();
+        // $foo->find(26)->touch();
+        /*$foo = \App\Foo2::create([
+            'bar' => str_repeat('Hello world', rand(2, 10))
+        ]);*/
+
+        // $foo = \App\Foo2::find(2)->delete();
+        // $foo = \App\Foo2::withTrashed()->get();
+
+        foreach($foo as $f){
+            echo "{$f->title}<br>";
+        }
+
+        die;
+        return view('welcome');
     }
 }
