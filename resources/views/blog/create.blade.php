@@ -9,7 +9,7 @@
             @endforeach
             </ul>
         @endif
-        {!! Form::open(["route" => "view.store"]) !!}
+        {!! Form::open(["route" => "article.store"]) !!}
         {{--  Name text field --}}
         <div class="form-group">
             {!! Form::label('title', 'Заголовок новости') !!}

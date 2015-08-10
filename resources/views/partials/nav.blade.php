@@ -3,7 +3,7 @@
     <nav>
         <ul class="nav nav-justified">
             <li class="active"><a href="/">Главная</a></li>
-            <li><a href="{{ route('view.create') }}">Добавить Запись</a></li>
+            <li><a href="{{ route('article.create') }}">Добавить Запись</a></li>
             <li><a href="#">Services</a></li>
             <li><a href="#">Downloads</a></li>
             <li><a href="#">About</a></li>

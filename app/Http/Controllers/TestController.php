@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Article;
-use App\Http\Requests\ArticleRequest;
 
-class BlogController extends Controller
+class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +16,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $pagination = Article::published()->latest('published_at')->paginate(6);
-
-        $articles = $pagination->chunk(3);
-
-        return view('blog.index', compact('articles', 'pagination'));
+        //
     }
 
     /**
@@ -32,21 +26,18 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        //
     }
 
-
     /**
-     * @param ArticleRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * Store a newly created resource in storage.
+     *
+     * @param  Request  $request
+     * @return Response
      */
-    public function store(ArticleRequest $request)
+    public function store(Request $request)
     {
-        Article::create($request->all());
-
-        session()->flash('success', 'Новость добавлена'); // $_SESSION['success'] = 'Новость добавлена'
-
-        return redirect()->route('article.index');
+        //
     }
 
     /**
@@ -57,9 +48,7 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        $article = Article::findOrFail($id);
-
-        return view('blog.view', compact('article'));
+        //
     }
 
     /**
