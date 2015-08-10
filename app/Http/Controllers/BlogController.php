@@ -70,7 +70,9 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::findOrFail($id);
+
+        return view('blog.edit', compact('article'));
     }
 
     /**
@@ -80,9 +82,13 @@ class BlogController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
-        //
+        Article::findOrFail($id)->update($request->all());
+
+        session()->flash('success', 'Запись '. $request->get('title') .' обновлена');
+
+        return redirect()->route('article.index');
     }
 
     /**

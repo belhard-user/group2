@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+// use Request;
 
 class ArticleRequest extends Request
 {
@@ -23,10 +24,16 @@ class ArticleRequest extends Request
      */
     public function rules()
     {
-        return [
+        $rules =  [
             'title' => 'required|min:3|max:100|unique:articles',
             'body' => 'required',
             'published_at' => 'required'
          ];
+
+        if(\Request::is('article/*') && \Request::isMethod('PUT')){
+            $rules['title'] = 'required|min:3|max:100|unique:articles,title,' . $this->article;
+        }
+
+        return $rules;
     }
 }
