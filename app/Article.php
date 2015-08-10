@@ -12,7 +12,7 @@ class Article extends Model
 
     public function setPublishedAtAttribute($data)
     {
-        $this->attributes['published_at'] = \Carbon\Carbon::now()->addDay(2);
+        $this->attributes['published_at'] = \Carbon\Carbon::createFromFormat('Y-m-d', $data);
     }
 
     public function scopePublished($query)

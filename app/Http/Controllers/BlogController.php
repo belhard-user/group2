@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
+use App\Http\Requests\ArticleRequest;
 
 class BlogController extends Controller
 {
@@ -31,12 +32,19 @@ class BlogController extends Controller
         return view('blog.create');
     }
 
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         Article::create($request->all());
 
         session()->flash('success', 'Новость добавлена'); // $_SESSION['success'] = 'Новость добавлена'
 
-        return redirect()->back();
+        return redirect()->route('main');
+    }
+
+    public function test()
+    {
+        $response = new \Illuminate\Http\Response(view('welcome'));
+        $response->withCookie(cookie('referrer', $request->referrer, 45000));
+        return $response;
     }
 }
