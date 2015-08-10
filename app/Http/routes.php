@@ -13,5 +13,7 @@ get('model', ['as' => 'view.model', 'uses' => 'ViewController@model']);
 /**
  * Blog section
  */
-Route::get('/', ['as' => 'main', 'uses' => 'BlogController@index']);
-Route::get('/{id}', ['as' => 'view.blog', 'uses' => 'BlogController@view']);
+get('/', ['as' => 'main', 'uses' => 'BlogController@index']);
+get('create', ['as' => 'view.create', 'uses' => 'BlogController@create']);
+get('/{id}', ['as' => 'view.blog', 'uses' => 'BlogController@view']);
+post('store', ['as' => 'view.store', 'uses' => 'BlogController@store']);

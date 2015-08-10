@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Article;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        $pagination = \DB::table('articles')->paginate(6);
+        $pagination = Article::published()->latest('published_at')->paginate(6);
 
         $articles = $pagination->chunk(3);
 
@@ -20,12 +21,22 @@ class BlogController extends Controller
 
     public function view($id)
     {
-        $article = \DB::table('articles')->where('id', $id)->first();
-
-        if(! $article){
-            abort(404);
-        }
+        $article = Article::findOrFail($id);
 
         return view('blog.view', compact('article'));
+    }
+
+    public function create()
+    {
+        return view('blog.create');
+    }
+
+    public function store(Request $request)
+    {
+        Article::create($request->all());
+
+        session()->flash('success', 'Новость добавлена'); // $_SESSION['success'] = 'Новость добавлена'
+
+        return redirect()->back();
     }
 }

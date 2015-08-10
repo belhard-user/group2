@@ -21,6 +21,7 @@
     </div>
 --}}
     <!-- Example row of columns -->
+    @include('partials.flash')
     @yield('content', 'Что - то случилось')
 
     <!-- Site footer -->
