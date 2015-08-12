@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'locale' => 'ru',
+        'locale' => 'ru',
 
     /*
     |--------------------------------------------------------------------------
@@ -146,6 +146,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
+        Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
 
     ],
 
@@ -197,7 +198,8 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Form'      => Illuminate\Html\FormFacade::class,
         'HTML'      => Illuminate\Html\HtmlFacade::class,
-
+        'LocalizedCarbon'   => Laravelrus\LocalizedCarbon\LocalizedCarbon::class,
+        'DiffFormatter'     => Laravelrus\LocalizedCarbon\DiffFactoryFacade::class,
 
     ],
 

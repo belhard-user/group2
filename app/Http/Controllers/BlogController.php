@@ -78,7 +78,7 @@ class BlogController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
+     * @param  ArticleRequest  $request
      * @param  int  $id
      * @return Response
      */
