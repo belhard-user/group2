@@ -21,3 +21,8 @@ get('{id}/update', ['as' => 'view.update', 'uses' => 'BlogController@update']);*
 
 get('/', 'IndexController@index');
 Route::resource('article', 'BlogController');
+get('/test', function(){
+    $a = \App\Article::first();
+
+    echo $a->published_at->diffForHumans();
+});

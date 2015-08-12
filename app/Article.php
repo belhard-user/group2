@@ -18,6 +18,11 @@ class Article extends Model
         $this->attributes['published_at'] = \Carbon\Carbon::createFromFormat('Y-m-d', $data);
     }
 
+    public function getPublishedAtAttribute($data)
+    {
+        return \LocalizedCarbon::instance(\Carbon\Carbon::parse($data));
+    }
+
     public function scopePublished($query)
     {
         $query->where('published_at', '<=', \Carbon\Carbon::now());
