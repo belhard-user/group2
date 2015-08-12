@@ -19,9 +19,13 @@ get('/{id}', ['as' => 'view.blog', 'uses' => 'BlogController@show']);
 post('store', ['as' => 'view.store', 'uses' => 'BlogController@store']);
 get('{id}/update', ['as' => 'view.update', 'uses' => 'BlogController@update']);*/
 
-get('/', 'IndexController@index');
+get('/', ['middleware' => 'admin', 'uses' => 'IndexController@index']);
 resource('article', 'BlogController');
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController'
 ]);
+
+get('test', ['middleware' => 'admin', function(){
+    return 'Im is admin';
+}]);

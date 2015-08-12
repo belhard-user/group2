@@ -12,6 +12,16 @@ use App\Http\Requests\ArticleRequest;
 class BlogController extends Controller
 {
     /**
+     * BlogController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('admin', ['only' => ['create', 'delete', 'update', 'store']]);
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return Response
@@ -42,7 +52,10 @@ class BlogController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        Article::create($request->all());
+        $request = array_add($request->all(), 'user_id', \Auth::user()->id);
+        $request = array_add($request, 'slug', $request['title']);
+        
+        Article::create($request);
 
         session()->flash('success', 'Новость добавлена'); // $_SESSION['success'] = 'Новость добавлена'
 

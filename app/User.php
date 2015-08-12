@@ -11,6 +11,9 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
     use Authenticatable, CanResetPassword;
+    const ADMIN = 1;
+    const MANAGER = 2;
+    const USER = 3;
 
     /**
      * The database table used by the model.
@@ -32,4 +35,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function isAdmin()
+    {
+        return $this->role == static::ADMIN;
+    }
+
+    public function isManager()
+    {
+        return $this->role == static::MANAGER || $this->role == static::ADMIN;
+    }
 }
