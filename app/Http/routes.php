@@ -20,9 +20,8 @@ post('store', ['as' => 'view.store', 'uses' => 'BlogController@store']);
 get('{id}/update', ['as' => 'view.update', 'uses' => 'BlogController@update']);*/
 
 get('/', 'IndexController@index');
-Route::resource('article', 'BlogController');
-get('/test', function(){
-    $a = \App\Article::first();
-
-    echo $a->published_at->diffForHumans();
-});
+resource('article', 'BlogController');
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController'
+]);

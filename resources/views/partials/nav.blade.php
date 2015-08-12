@@ -4,10 +4,13 @@
         <ul class="nav nav-justified">
             <li class="active"><a href="/">Главная</a></li>
             <li><a href="{{ route('article.create') }}">Добавить Запись</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Downloads</a></li>
-            <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
+            @if(! Auth::check())
+                <li><a href="{{ url('/auth/login') }}">Вход</a></li>
+                <li><a href="{{ url('/auth/register') }}">Регистрация</a></li>
+            @else
+                <li><a href="{{ url('/auth/logout') }}">Выход( {{ Auth::user()->name }} )</a></li>
+            @endif
         </ul>
     </nav>
 </div>
