@@ -45,4 +45,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->role == static::MANAGER || $this->role == static::ADMIN;
     }
+
+    public function articles()
+    {
+        return $this->hasMany('\App\Article');
+    }
 }

@@ -52,10 +52,9 @@ class BlogController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        $request = array_add($request->all(), 'user_id', \Auth::user()->id);
-        $request = array_add($request, 'slug', $request['title']);
-        
-        Article::create($request);
+        $request = array_add($request->all(), 'slug', $request['title']);
+        $article  = new Article($request);
+        Auth::user()->articles()->save($article);
 
         session()->flash('success', 'Новость добавлена'); // $_SESSION['success'] = 'Новость добавлена'
 

@@ -78,4 +78,9 @@ class Article extends Model
         $str = trim($str, "-");
         return $str;
     }
+
+    public function user()
+    {
+        return $this->belongsTo('\App\User', 'user_id', 'id');
+    }
 }

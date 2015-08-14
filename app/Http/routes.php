@@ -29,3 +29,21 @@ Route::controllers([
 get('test', ['middleware' => 'admin', function(){
     return 'Im is admin';
 }]);
+
+get('relation', function(){
+    /*$user = \App\User::find(2);
+    foreach($user->articles as $article){
+        echo $article->title . '<br/>';
+    }*/
+
+    $article = \App\Article::find(11);
+
+    $user = $article->user;
+
+    dd($user->email);
+
+
+
+    return view('welcome');
+
+});
