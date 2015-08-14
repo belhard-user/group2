@@ -19,7 +19,7 @@ get('/{id}', ['as' => 'view.blog', 'uses' => 'BlogController@show']);
 post('store', ['as' => 'view.store', 'uses' => 'BlogController@store']);
 get('{id}/update', ['as' => 'view.update', 'uses' => 'BlogController@update']);*/
 
-get('/', ['middleware' => 'admin', 'uses' => 'IndexController@index']);
+get('/', ['uses' => 'IndexController@index']);
 resource('article', 'BlogController');
 Route::controllers([
     'auth' => 'Auth\AuthController',

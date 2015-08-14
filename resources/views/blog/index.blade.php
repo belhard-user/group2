@@ -10,7 +10,7 @@
                 <h2>{{ $article->title }}</h2>
 
                 <p>{{ str_limit(nl2br($article->body), 260) }}</p>
-                <p><a class="btn btn-primary" href="{{ route('article.show', ['id' => $article->id]) }}" role="button">Глянуть »</a></p>
+                <p><a class="btn btn-primary" href="{{ route('article.show', ['id' => $article->slug]) }}" role="button">Глянуть »</a></p>
             </div>
         @endforeach
     </div>

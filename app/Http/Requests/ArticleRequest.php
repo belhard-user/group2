@@ -31,7 +31,7 @@ class ArticleRequest extends Request
          ];
 
         if(\Request::is('article/*') && \Request::isMethod('PUT')){
-            $rules['title'] = 'required|min:3|max:100|unique:articles,title,' . $this->article;
+            $rules['title'] = 'required|min:3|max:100|unique:articles,title,' . $this->article->id;
         }
 
         return $rules;

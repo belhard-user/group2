@@ -54,36 +54,31 @@ class BlogController extends Controller
     {
         $request = array_add($request->all(), 'slug', $request['title']);
         $article  = new Article($request);
-        Auth::user()->articles()->save($article);
+        \Auth::user()->articles()->save($article);
 
         session()->flash('success', 'Новость добавлена'); // $_SESSION['success'] = 'Новость добавлена'
 
         return redirect()->route('article.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        $article = Article::findOrFail($id);
 
+    /**
+     * @param Article $article
+     * @return \Illuminate\View\View
+     */
+    public function show(Article $article)
+    {
         return view('blog.view', compact('article'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Article $article
      * @return Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        $article = Article::findOrFail($id);
-
         return view('blog.edit', compact('article'));
     }
 
@@ -91,12 +86,12 @@ class BlogController extends Controller
      * Update the specified resource in storage.
      *
      * @param  ArticleRequest  $request
-     * @param  int  $id
+     * @param  Article $article
      * @return Response
      */
-    public function update(ArticleRequest $request, $id)
+    public function update(ArticleRequest $request, Article $article)
     {
-        Article::findOrFail($id)->update($request->all());
+        $article->update($request->all());
 
         session()->flash('success', 'Запись '. $request->get('title') .' обновлена');
 
