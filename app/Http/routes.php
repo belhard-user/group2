@@ -47,3 +47,71 @@ get('relation', function(){
     return view('welcome');
 
 });
+
+
+
+/*class Foo{
+    public $bar;
+
+    public function __construct(Bar $bar)
+    {
+        $this->bar = $bar;
+    }
+}
+class Bar{
+    private $name;
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+}
+
+App::bind('Foo', function($app){
+
+    $names = collect([
+        'Neo',
+        'Morpheus',
+        'Trinity',
+        'Tank',
+        'John Smith'
+    ]);
+
+    return new Foo(new Bar( $names->random() ));
+});
+app()->bind('Foo', function($app){
+
+    $names = collect([
+        'Neo',
+        'Morpheus',
+        'Trinity',
+        'Tank',
+        'John Smith'
+    ]);
+
+    return new Foo(new Bar( $names->random() ));
+});
+
+get('service', function(Foo $foo){
+    dd($foo->bar);
+});*/
+
+get('service', 'TestController@service');
+
+
+
+
+
+
+
+
+
+
+
+
+
+

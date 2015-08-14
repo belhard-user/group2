@@ -147,6 +147,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
         Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
+        App\Providers\FooProviders::class
 
     ],
 
@@ -200,6 +201,7 @@ return [
         'HTML'      => Illuminate\Html\HtmlFacade::class,
         'LocalizedCarbon'   => Laravelrus\LocalizedCarbon\LocalizedCarbon::class,
         'DiffFormatter'     => Laravelrus\LocalizedCarbon\DiffFactoryFacade::class,
+        'F'       => App\Classes\FooFacade::class,
 
     ],
 
