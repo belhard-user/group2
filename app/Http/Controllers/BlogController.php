@@ -42,7 +42,9 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        $tagsList = $this->getTagList();
+
+        return view('blog.create', compact('tagsList'));
     }
 
 
@@ -52,9 +54,7 @@ class BlogController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        $request = array_add($request->all(), 'slug', $request['title']);
-        $article  = new Article($request);
-        \Auth::user()->articles()->save($article);
+        $this->createAndUpdate($request);
 
         session()->flash('success', 'Новость добавлена'); // $_SESSION['success'] = 'Новость добавлена'
 
@@ -79,7 +79,9 @@ class BlogController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('blog.edit', compact('article'));
+        $tagsList = $this->getTagList();
+
+        return view('blog.edit', compact('article', 'tagsList'));
     }
 
     /**
@@ -92,6 +94,7 @@ class BlogController extends Controller
     public function update(ArticleRequest $request, Article $article)
     {
         $article->update($request->all());
+        $article->tags()->sync($request->get('tag_list'));
 
         session()->flash('success', 'Запись '. $request->get('title') .' обновлена');
 
@@ -107,5 +110,27 @@ class BlogController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getTagList()
+    {
+        $tagsList = \App\Tag::lists('name', 'id');
+        return $tagsList;
+    }
+
+    /**
+     * @param ArticleRequest $request
+     * @return Article $article
+     */
+    private function createAndUpdate(ArticleRequest $request)
+    {
+        $request = array_add($request->all(), 'slug', $request['title']);
+        $article = \Auth::user()->articles()->save(new Article($request));
+        $article->tags()->sync($request['tag_list']);
+
+        return $article;
     }
 }

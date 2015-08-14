@@ -10,4 +10,13 @@
     <p class="text-center">
         {{ $article->body }}
     </p>
+    @unless($article->tags->isEmpty())
+    <h3>Теги:</h3>
+    <hr>
+    <ul class="list-unstyled">
+        @foreach($article->tags as $tag)
+            <li>{{ $tag->name }}</li>
+        @endforeach
+    </ul>
+    @endunless
 @endsection

@@ -102,16 +102,7 @@ get('service', function(Foo $foo){
 
 get('service', 'TestController@service');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+get('attach', function(){
+    $article = \App\Article::first();
+    $article->tags()->attach([2, 3, 4]);
+});
